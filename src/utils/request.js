@@ -1,16 +1,19 @@
-import { Authrite } from 'authrite-js'
+// import { Authrite } from 'authrite-js'
 import { toast } from 'react-toastify'
 
-const client = new Authrite()
+// Instantiate a new Authrite Client
+// const client = new Authrite()
 
 export default async (method, url, params) => {
   try {
     // Make an HTTP Request
-    const response = await client.request(url, {
+    // TODO: Use Authrite for authentication
+    const response = await window.fetch(url, {
       method,
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(params)
     })
-    const parsedBody = JSON.parse(Buffer.from(response.body).toString('utf8'))
+    const parsedBody = await response.json()
 
     // Error Handling
     if (parsedBody.status === 'error') {

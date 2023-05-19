@@ -8,6 +8,7 @@ const client = new Authrite()
 export default async (method, url, params) => {
   try {
     // Make an HTTP Request
+    // TODO: Use Packet for micropayments
     const response = await client.request(url, {
       method,
       body: JSON.stringify(params)
