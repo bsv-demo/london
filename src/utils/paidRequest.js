@@ -1,4 +1,4 @@
-// import PacketPay from '@packetpay/js'
+import PacketPay from '@packetpay/js'
 import { Authrite } from 'authrite-js'
 import { toast } from 'react-toastify'
 
@@ -8,12 +8,12 @@ const client = new Authrite()
 export default async (method, url, params) => {
   try {
     // Make an HTTP Request
-    // TODO: Use Packet for micropayments
+    // TODO: Replace client.request with PacketPay
     const response = await client.request(url, {
       method,
       body: JSON.stringify(params)
     })
-    const parsedBody = JSON.parse(Buffer.from(response.body).toString('utf8'))
+    const parsedBody = await response.json()
 
     // Error Handling
     if (parsedBody.status === 'error') {
@@ -30,15 +30,3 @@ export default async (method, url, params) => {
     toast.error(e.message)
   }
 }
-
-// TEMPLATE CODE ----------------------------------------------------------------------
-
-/**
- * TODO: Use PacketPay client for micropayments ----------------------------
- */
-// const response = await PacketPay(url, {
-//   method,
-//   body: JSON.stringify(params)
-// })
-
-// -------------------------------------------------------------------------------------

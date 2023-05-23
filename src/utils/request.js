@@ -1,13 +1,13 @@
-// import { Authrite } from 'authrite-js'
+import { Authrite } from 'authrite-js'
 import { toast } from 'react-toastify'
 
 // Instantiate a new Authrite Client
-// const client = new Authrite()
+const client = new Authrite()
 
 export default async (method, url, params) => {
   try {
     // Make an HTTP Request
-    // TODO: Use Authrite for authentication
+    // TODO: Replace window.fetch with client.request
     const response = await window.fetch(url, {
       method,
       headers: { 'Content-Type': 'application/json' },
@@ -32,16 +32,3 @@ export default async (method, url, params) => {
     toast.error(e.message)
   }
 }
-
-// TEMPLATE CODE ----------------------------------------------------------------------
-
-/**
- * TODO: Use Authrite Client for Authentication ----------------------------
- */
-// const response = await client.request(url, {
-//   method,
-//   body: JSON.stringify(params)
-// })
-// const parsedBody = JSON.parse(Buffer.from(response.body).toString('utf8'))
-
-// -------------------------------------------------------------------------------------
